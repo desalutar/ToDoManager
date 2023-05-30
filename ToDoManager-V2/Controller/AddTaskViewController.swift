@@ -8,7 +8,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     
     weak var delegate: AddTaskVCDelegate?
     
-    // MARK: - Оутлеты
+    // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var deleteButton: UIButton!
@@ -23,7 +23,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     
     @IBAction func myButton(_ sender: Any) {
         let todo = ToDoItem(title: textField.text!, discription: textView.text!)
-        delegate?.didCreate(todo: todo) // тут мы отправляем данные тому обьекту кто подписан на наш делегат
+        delegate?.didCreate(todo: todo) // here we send data to the object who is subscribed to our delegate
         dismiss(animated: true)
     }
     
