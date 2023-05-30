@@ -1,1 +1,1 @@
-My first project with a mentor where I use the MVC architecture
+My first project where I use MVC architecture
