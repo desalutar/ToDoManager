@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  ToDoManager-V2
-//
-//  Created by Ишхан Багратуни on 27.05.23.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

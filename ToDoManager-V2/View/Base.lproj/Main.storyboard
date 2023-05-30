@@ -41,14 +41,9 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
-                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="749" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dkG-Y2-elY">
-                                            <rect key="frame" x="247" y="43.5" width="51" height="31"/>
-                                        </switch>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="X8C-4p-KCM" secondAttribute="bottom" constant="8" id="04h-sZ-nDt"/>
-                                        <constraint firstItem="dkG-Y2-elY" firstAttribute="centerY" secondItem="4Df-OS-41Y" secondAttribute="centerY" id="3on-yX-Ob6"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="dkG-Y2-elY" secondAttribute="trailing" constant="8" id="dOk-OI-Xgy"/>
                                         <constraint firstItem="X8C-4p-KCM" firstAttribute="top" secondItem="4Df-OS-41Y" secondAttribute="topMargin" constant="8" id="nzY-mX-GLQ"/>
                                         <constraint firstItem="X8C-4p-KCM" firstAttribute="centerY" secondItem="4Df-OS-41Y" secondAttribute="centerY" id="pjC-4c-ECP"/>
                                         <constraint firstItem="X8C-4p-KCM" firstAttribute="leading" secondItem="4Df-OS-41Y" secondAttribute="leadingMargin" id="wPO-sA-0dF"/>

@@ -1,10 +1,3 @@
-//
-//  TableViewController.swift
-//  ToDoManager-V2
-//
-//  Created by Ишхан Багратуни on 27.05.23.
-//
-
 import UIKit
 
 class TableViewController: UITableViewController {
@@ -39,9 +32,7 @@ class TableViewController: UITableViewController {
         return cell // возвращаю ячейку
     }
     
-//    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 118
-//    }
+
 }
 
 
