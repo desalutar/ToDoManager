@@ -39,6 +39,11 @@ class TableViewController: UITableViewController {
         return cell
     }
     
+    // redefining the height of our row
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 118
+    }
+    
     // MARK: - @OBJC Methods
     @objc func switchChanged(sender: UISwitch) {
         print("Table Row switch changed \(sender.tag)")
