@@ -17,25 +17,37 @@ class TableViewController: UITableViewController {
 
     
     
-    // MARK: - Table view DataSource
+    // MARK: - Table view Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         todos.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { 
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell", for: indexPath) as? TableViewCell else { // cast on your cell
-            return UITableViewCell()
-        }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell",
+                                                       for: indexPath) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
         let todo = todos[indexPath.row] // pick up the current body by cell index
         cell.configuriCell(with: todo) // config a cell from a cell
+        
+        // Swich in Cell
+        let switchView = UISwitch(frame: .zero)
+        switchView.setOn(false, animated: true)
+        switchView.tag = indexPath.row
+        switchView.addTarget(self, action: #selector(switchChanged(sender:)), for: .valueChanged)
+        
+        cell.accessoryView = switchView
         return cell
     }
     
-
+    // MARK: - @OBJC Methods
+    @objc func switchChanged(sender: UISwitch) {
+        print("Table Row switch changed \(sender.tag)")
+        print("The switch is \(sender.isOn ? "On" : "Off")")
+    }
 }
 
 
+// MARK: - Extensions
 extension TableViewController: AddTaskVCDelegate { // here we get data from the second view
     func didCreate(todo: ToDoItem) {
         todos.append(todo) // add a new element to the array

@@ -45,7 +45,6 @@
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="X8C-4p-KCM" secondAttribute="bottom" constant="8" id="04h-sZ-nDt"/>
                                         <constraint firstItem="X8C-4p-KCM" firstAttribute="top" secondItem="4Df-OS-41Y" secondAttribute="topMargin" constant="8" id="nzY-mX-GLQ"/>
-                                        <constraint firstItem="X8C-4p-KCM" firstAttribute="centerY" secondItem="4Df-OS-41Y" secondAttribute="centerY" id="pjC-4c-ECP"/>
                                         <constraint firstItem="X8C-4p-KCM" firstAttribute="leading" secondItem="4Df-OS-41Y" secondAttribute="leadingMargin" id="wPO-sA-0dF"/>
                                     </constraints>
                                 </tableViewCellContentView>
