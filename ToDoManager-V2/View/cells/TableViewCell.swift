@@ -14,8 +14,20 @@ class TableViewCell: UITableViewCell {
     }
 
     func configuriCell(with toDoItem: ToDoItem){
+        titleLabel.adjustsFontSizeToFitWidth = true
+        discripriptionLabel.adjustsFontSizeToFitWidth = true
         titleLabel.text = toDoItem.title
         discripriptionLabel.text = toDoItem.discription
+    }
+    
+    @IBAction func switchAction(_ sender: UISwitch) {
+        if sender.isOn {
+            titleLabel.textColor = .lightGray
+            discripriptionLabel.textColor = .lightGray
+        } else {
+            titleLabel.textColor = .black
+            discripriptionLabel.textColor = .black
+        }
     }
 
 }
