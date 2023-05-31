@@ -31,9 +31,9 @@ class TableViewController: UITableViewController {
         
         // Swich in Cell
         let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
+        switchView.setOn(true, animated: true)
         switchView.tag = indexPath.row
-        
+        switchView.addTarget(self, action: #selector(switchPosition), for: .valueChanged)
         cell.accessoryView = switchView
         return cell
     }
@@ -41,6 +41,17 @@ class TableViewController: UITableViewController {
     // redefining the height of our row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
+    }
+    
+    @objc func switchPosition(_ sender: UISwitch) {
+        let index = IndexPath(row: sender.tag, section: 0)
+        guard let cell = tableView.cellForRow(at: index) as? TableViewCell else { return }
+        if sender.isOn {
+            cell.backgroundColor = .white
+        } else {
+            cell.backgroundColor = .lightGray
+        }
+                
     }
     
 }
