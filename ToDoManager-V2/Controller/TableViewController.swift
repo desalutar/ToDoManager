@@ -33,7 +33,6 @@ class TableViewController: UITableViewController {
         let switchView = UISwitch(frame: .zero)
         switchView.setOn(false, animated: true)
         switchView.tag = indexPath.row
-        switchView.addTarget(self, action: #selector(switchChanged(sender:)), for: .valueChanged)
         
         cell.accessoryView = switchView
         return cell
@@ -44,11 +43,6 @@ class TableViewController: UITableViewController {
         return 118
     }
     
-    // MARK: - @OBJC Methods
-    @objc func switchChanged(sender: UISwitch) {
-        print("Table Row switch changed \(sender.tag)")
-        print("The switch is \(sender.isOn ? "On" : "Off")")
-    }
 }
 
 
