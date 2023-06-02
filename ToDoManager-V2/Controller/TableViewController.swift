@@ -37,13 +37,29 @@ class TableViewController: UITableViewController {
         return 118
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let secondeVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(
+            withIdentifier: "secondVC") as? AddTaskViewController else {
+            fatalError("Unable to Instantiate Quotes View Controller")
+        }
+        
+        let todo = todos[indexPath.row]
+        _ = secondeVC.view
+        secondeVC.cellsSetup(with: todo)
+        navigationController?.pushViewController(secondeVC, animated: true)
+    }
 }
 
 
 // MARK: - Extensions
 extension TableViewController: AddTaskVCDelegate { // here we get data from the second view
-    func didCreate(todo: ToDoItem) {
+    func didCreateToDo(todo: ToDoItem) {
         todos.append(todo) // add a new element to the array
         tableView.reloadData() // reload the table
+    }
+    
+    func didUpdateToDo(todo: ToDoItem) {
+        todos.append(todo)
+        tableView.reloadData()
     }
 }

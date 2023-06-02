@@ -1,7 +1,8 @@
 import UIKit
 
 protocol AddTaskVCDelegate: AnyObject {
-    func didCreate(todo: ToDoItem)
+    func didCreateToDo(todo: ToDoItem)
+    func didUpdateToDo(todo: ToDoItem)
 }
 
 class AddTaskViewController: UIViewController, UITextViewDelegate {
@@ -13,6 +14,12 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var deleteButton: UIButton!
     
+    enum ControllerType {
+        case create
+        case edit
+    }
+    var controllerCreate = ControllerType.create
+    var controllerEdit = ControllerType.edit
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,10 +28,22 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
         textView.delegate = self
     }
     
+    
+    func cellsSetup(with todos: ToDoItem) {
+        textField.text = todos.title
+        textView.text = todos.discription
+    }
+    
+    
     @IBAction func myButton(_ sender: Any) {
         let todo = ToDoItem(title: textField.text!, discription: textView.text!)
-        delegate?.didCreate(todo: todo) // here we send data to the object who is subscribed to our delegate
+        delegate?.didCreateToDo(todo: todo) // here we send data to the object who is subscribed to our delegate
         dismiss(animated: true)
+
+        let updateToDo = ToDoItem(title: textField.text!, discription: textView.text!)
+        delegate?.didUpdateToDo(todo: updateToDo)
+        dismiss(animated: true)
+
     }
     
 }

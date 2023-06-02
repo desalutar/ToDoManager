@@ -32,7 +32,7 @@
                                                 <action selector="switchAction:" destination="pTh-0D-CGD" eventType="valueChanged" id="Om7-JR-9JF"/>
                                             </connections>
                                         </switch>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Задача" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Um-cy-5sq">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Задача" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="6Um-cy-5sq">
                                             <rect key="frame" x="16" y="54" width="95" height="43"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <directionalEdgeInsets key="directionalLayoutMargins" top="8" leading="8" bottom="8" trailing="8"/>
@@ -80,7 +80,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="6BF-Ue-YSP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="aKO-QC-2Pf">
-                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -95,7 +95,7 @@
         <!--Add Task View Controller-->
         <scene sceneID="eZb-UN-uxs">
             <objects>
-                <viewController id="kYg-O5-wv1" customClass="AddTaskViewController" customModule="ToDoManager_V2" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="secondVC" id="kYg-O5-wv1" customClass="AddTaskViewController" customModule="ToDoManager_V2" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VKL-A8-Taa">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -121,11 +121,11 @@
                                     <constraint firstAttribute="height" constant="187" id="7J9-Aa-v9b"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Hg-u7G">
-                                <rect key="frame" x="194.5" y="250" width="109.5" height="34.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Hg-u7G">
+                                <rect key="frame" x="188.5" y="251" width="109.5" height="34.5"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Сохранить"/>
                                 <connections>
-                                    <action selector="myButton:" destination="kYg-O5-wv1" eventType="touchUpInside" id="Mnl-ja-r7y"/>
+                                    <action selector="myButton:" destination="kYg-O5-wv1" eventType="touchUpInside" id="HgL-07-6Q8"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yZ-XP-KAu">
