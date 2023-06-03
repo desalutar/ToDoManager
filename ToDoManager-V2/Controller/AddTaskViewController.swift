@@ -17,9 +17,10 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     enum ControllerType {
         case create
         case edit
+        case none
     }
-    var controllerCreate = ControllerType.create
-    var controllerEdit = ControllerType.edit
+    
+    var controllerCreate = ControllerType.none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,23 +30,26 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    func cellsSetup(with todos: ToDoItem) {
+    func configure(with todos: ToDoItem) {
         textField.text = todos.title
         textView.text = todos.discription
     }
     
     
     @IBAction func myButton(_ sender: Any) {
-        let todo = ToDoItem(title: textField.text!, discription: textView.text!)
-        delegate?.didCreateToDo(todo: todo) // here we send data to the object who is subscribed to our delegate
-        dismiss(animated: true)
-
-        let updateToDo = ToDoItem(title: textField.text!, discription: textView.text!)
-        delegate?.didUpdateToDo(todo: updateToDo)
-        dismiss(animated: true)
-
+        let todoFromTappedButton = ToDoItem(title: textField.text!, discription: textView.text!)
+        
+        switch controllerCreate {
+        case .create:
+            delegate?.didCreateToDo(todo: todoFromTappedButton) // here we send data to the object who is subscribed to our delegate
+            dismiss(animated: true)
+        case .edit:
+            delegate?.didUpdateToDo(todo: todoFromTappedButton)
+            navigationController?.popViewController(animated: true)
+        case .none:
+            print("Error")
+        }
     }
-    
 }
 
 

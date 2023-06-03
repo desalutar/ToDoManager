@@ -121,8 +121,8 @@
                                     <constraint firstAttribute="height" constant="187" id="7J9-Aa-v9b"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Hg-u7G">
-                                <rect key="frame" x="188.5" y="251" width="109.5" height="34.5"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Hg-u7G">
+                                <rect key="frame" x="194.5" y="250" width="109.5" height="34.5"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Сохранить"/>
                                 <connections>
                                     <action selector="myButton:" destination="kYg-O5-wv1" eventType="touchUpInside" id="HgL-07-6Q8"/>

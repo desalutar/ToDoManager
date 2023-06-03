@@ -3,6 +3,7 @@ import UIKit
 class TableViewController: UITableViewController {
 
     private var todos = [ToDoItem]()  // array that we use as a datasource
+    private var selectedIndex: Int?   // глобальная переменная для работы индекса строки в расширении
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -11,6 +12,7 @@ class TableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "addTaskVc" {
             let addTaskVC = segue.destination as? AddTaskViewController // create a link to the second view controller
+            addTaskVC?.type = .create
             addTaskVC?.delegate = self // subscribe it to the delegate of the second controller
         }
     }
@@ -45,8 +47,12 @@ class TableViewController: UITableViewController {
         
         let todo = todos[indexPath.row]
         _ = secondeVC.view
-        secondeVC.cellsSetup(with: todo)
+        secondeVC.configure(with: todo)
+        secondeVC.type = .edit
+        secondeVC.delegate = self
         navigationController?.pushViewController(secondeVC, animated: true)
+        
+        selectedIndex = indexPath.row
     }
 }
 
@@ -59,7 +65,8 @@ extension TableViewController: AddTaskVCDelegate { // here we get data from the 
     }
     
     func didUpdateToDo(todo: ToDoItem) {
-        todos.append(todo)
+        guard let index = selectedIndex else { return }
+        todos[index] = todo
         tableView.reloadData()
     }
 }
