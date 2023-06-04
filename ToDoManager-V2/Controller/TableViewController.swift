@@ -55,7 +55,7 @@ class TableViewController: UITableViewController {
         selectedIndex = indexPath.row
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { // swipe deleted todo
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             todos.remove(at: indexPath.row)
             tableView.reloadData()
@@ -79,7 +79,7 @@ extension TableViewController: AddTaskVCDelegate {
         tableView.reloadData()
     }
     
-    func didDeleteToDo() {
+    func didDeleteToDo() { // add protocol method for delete todo
         guard let index = selectedIndex else { return }
         todos.remove(at: index)
         tableView.reloadData()

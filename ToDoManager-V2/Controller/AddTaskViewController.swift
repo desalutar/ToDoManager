@@ -3,7 +3,7 @@ import UIKit
 protocol AddTaskVCDelegate: AnyObject {
     func didCreateToDo(todo: ToDoItem)
     func didUpdateToDo(todo: ToDoItem)
-    func didDeleteToDo()
+    func didDeleteToDo() // method for delete button
 }
 
 class AddTaskViewController: UIViewController, UITextViewDelegate {
@@ -53,7 +53,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func deleteButtonAction(_ sender: Any) {
+    @IBAction func deleteButtonAction(_ sender: Any) { // add delete button
         let alert = UIAlertController(title: "Вы точно хотите удалить ?",
                                       message: "выберите одно действие",
                                       preferredStyle: .actionSheet)
