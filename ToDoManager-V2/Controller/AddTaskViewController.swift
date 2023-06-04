@@ -3,6 +3,7 @@ import UIKit
 protocol AddTaskVCDelegate: AnyObject {
     func didCreateToDo(todo: ToDoItem)
     func didUpdateToDo(todo: ToDoItem)
+    func didDeleteToDo()
 }
 
 class AddTaskViewController: UIViewController, UITextViewDelegate {
@@ -12,15 +13,16 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     // MARK: - Outlets
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
-    @IBOutlet weak var deleteButton: UIButton!
     
-    enum ControllerType {
+    
+    
+    enum controllerType {
         case create
         case edit
         case none
     }
     
-    var controllerCreate = ControllerType.none
+    var type = controllerType.none
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +41,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     @IBAction func myButton(_ sender: Any) {
         let todoFromTappedButton = ToDoItem(title: textField.text!, discription: textView.text!)
         
-        switch controllerCreate {
+        switch type {
         case .create:
             delegate?.didCreateToDo(todo: todoFromTappedButton) // here we send data to the object who is subscribed to our delegate
             dismiss(animated: true)
@@ -50,6 +52,20 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
             print("Error")
         }
     }
+    
+    @IBAction func deleteButtonAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Вы точно хотите удалить ?",
+                                      message: "выберите одно действие",
+                                      preferredStyle: .actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
+        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (action) in
+            self.delegate?.didDeleteToDo()
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        present(alert, animated: true)
+        }
 }
 
 

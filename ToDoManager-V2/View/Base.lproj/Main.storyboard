@@ -132,6 +132,9 @@
                                 <rect key="frame" x="7" y="250" width="88.5" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Удалить"/>
+                                <connections>
+                                    <action selector="deleteButtonAction:" destination="kYg-O5-wv1" eventType="touchUpInside" id="aOx-IU-rBn"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kRu-d1-rq0"/>
@@ -150,7 +153,6 @@
                     </view>
                     <navigationItem key="navigationItem" id="0rg-Cl-bth"/>
                     <connections>
-                        <outlet property="deleteButton" destination="4yZ-XP-KAu" id="jLy-Hn-elL"/>
                         <outlet property="textField" destination="JvW-l3-7T4" id="x86-Th-bx4"/>
                         <outlet property="textView" destination="396-Zl-Gep" id="TiL-fJ-JWd"/>
                     </connections>

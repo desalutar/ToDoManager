@@ -1,7 +1,7 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-
+    
     private var todos = [ToDoItem]()  // array that we use as a datasource
     private var selectedIndex: Int?   // глобальная переменная для работы индекса строки в расширении
     
@@ -16,14 +16,14 @@ class TableViewController: UITableViewController {
             addTaskVC?.delegate = self // subscribe it to the delegate of the second controller
         }
     }
-
+    
     
     
     // MARK: - Table view Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         todos.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell",
@@ -32,9 +32,9 @@ class TableViewController: UITableViewController {
         cell.configuriCell(with: todo) // config a cell from a cell
         return cell
     }
-
-
-//     redefining the height of our row
+    
+    
+    //     redefining the height of our row
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
@@ -54,11 +54,20 @@ class TableViewController: UITableViewController {
         
         selectedIndex = indexPath.row
     }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            todos.remove(at: indexPath.row)
+            tableView.reloadData()
+        }
+    }
+    
 }
 
 
 // MARK: - Extensions
-extension TableViewController: AddTaskVCDelegate { // here we get data from the second view
+extension TableViewController: AddTaskVCDelegate {
+    // here we get data from the second view
     func didCreateToDo(todo: ToDoItem) {
         todos.append(todo) // add a new element to the array
         tableView.reloadData() // reload the table
@@ -67,6 +76,12 @@ extension TableViewController: AddTaskVCDelegate { // here we get data from the 
     func didUpdateToDo(todo: ToDoItem) {
         guard let index = selectedIndex else { return }
         todos[index] = todo
+        tableView.reloadData()
+    }
+    
+    func didDeleteToDo() {
+        guard let index = selectedIndex else { return }
+        todos.remove(at: index)
         tableView.reloadData()
     }
 }
