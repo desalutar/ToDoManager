@@ -26,6 +26,10 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // вынеси этот код в отдельный метод и вызови его отсюда
+        // подумай над названием. Метод должен как бы говорить своим названием что он делает
+        // вот как на примере: `configure`
         textField.becomeFirstResponder()
         textField.delegate = self
         textView.delegate = self
@@ -37,8 +41,10 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
         textView.text = todos.discription
     }
     
-    
+    // @IBAction private func myButton(_ sender: UIButton)
+    // медод сделай приватным, и ты же знаешь кто у тебя сендер. Зачем тут Any ?
     @IBAction func myButton(_ sender: Any) {
+        // 💩💩💩 Убрать форс анврап. За это могут спросить и будут бить по рукам
         let todoFromTappedButton = ToDoItem(title: textField.text!, discription: textView.text!)
         
         switch type {
@@ -49,10 +55,17 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
             delegate?.didUpdateToDo(todo: todoFromTappedButton)
             navigationController?.popViewController(animated: true)
         case .none:
+            // А почему Error ? разве тут ошибка ?
+            // я что, если передам .none ?
+            // И даже если ошибка, как ты ее обрабатываешь ? Что пользователь увидит ?
+            // ❌ исправь тут. Подумай как
             print("Error")
         }
     }
     
+    // 💩 строки опять. По хорошему вот такие строки должный быть локализированны
+    // поищи инфу про локализацию и прикрути сюда.
+    // Так больше делать нельзя!
     @IBAction func deleteButtonAction(_ sender: UIButton) { // add delete button
         let alert = UIAlertController(title: "Вы точно хотите удалить ?",
                                       message: "выберите одно действие",
@@ -69,7 +82,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
 }
 
 
-
+// ⚠️ Удали это пожалуйста, это мертвый код 
 extension AddTaskViewController: UITextFieldDelegate {
     
 }

@@ -10,6 +10,9 @@ class TableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Не рекомендуется писать захардкоженный текст вот в таком виде как тут
+        // для этого создай `enum Constants` например где будет статичное поле к примеру `addTaskIndentifier` которому будет
+        // присвоена строка "addTaskVc"
         if segue.identifier == "addTaskVc" {
             let addTaskVC = segue.destination as? AddTaskViewController // create a link to the second view controller
             addTaskVC?.type = .create
@@ -26,20 +29,28 @@ class TableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Тоже и тут про захардкоженный текст. Убрать в константы
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoCell",
                                                        for: indexPath) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
         let todo = todos[indexPath.row] // pick up the current body by cell index
+        
+        // тут как вариант можно немного упростить, но это по желанию
+        // `cell.configuriCell(with: todos[indexPath.row])`
         cell.configuriCell(with: todo) // config a cell from a cell
         return cell
     }
     
     
     //     redefining the height of our row
+    // Нет, так не пойдет! ❌ 💩💩💩
+    // Вот что такое `118` ? я то понимаю что высота ячейки, но ячейка должна менять высоту динамически в зависимости от текста
+    // Удали это, в исправь констрэнты
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 118
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Захардкоженные строки
         guard let secondeVC = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(
             withIdentifier: "secondVC") as? AddTaskViewController else {
             fatalError("Unable to Instantiate Quotes View Controller")
