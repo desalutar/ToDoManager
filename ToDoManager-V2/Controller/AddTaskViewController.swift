@@ -53,19 +53,19 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
         }
     }
     
-    @IBAction func deleteButtonAction(_ sender: Any) { // add delete button
+    @IBAction func deleteButtonAction(_ sender: UIButton) { // add delete button
         let alert = UIAlertController(title: "Вы точно хотите удалить ?",
                                       message: "выберите одно действие",
                                       preferredStyle: .actionSheet)
         
         alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
         alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (action) in
+            self.dismiss(animated: true)
             self.delegate?.didDeleteToDo()
             self.navigationController?.popViewController(animated: true)
         }))
-        
         present(alert, animated: true)
-        }
+    }
 }
 
 
