@@ -3,31 +3,29 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var discripriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
 
-    func configuriCell(with toDoItem: ToDoItem){
+    func configureCell(with toDoItem: ToDoItem){
         titleLabel.adjustsFontSizeToFitWidth = true
-        discripriptionLabel.adjustsFontSizeToFitWidth = true
+        descriptionLabel.adjustsFontSizeToFitWidth = true
         titleLabel.text = toDoItem.title
-        discripriptionLabel.text = toDoItem.discription
+        descriptionLabel.text = toDoItem.description
     }
     
     @IBAction func switchAction(_ sender: UISwitch) {
         if sender.isOn {
-            titleLabel.textColor = .lightGray
-            discripriptionLabel.textColor = .lightGray
+            titleLabel.textColor = .systemGray4
+            descriptionLabel.textColor = .systemGray4
         } else {
-            titleLabel.textColor = .black
-            discripriptionLabel.textColor = .black
+            titleLabel.textColor = .label
+            descriptionLabel.textColor = .label
         }
     }
 

@@ -3,10 +3,10 @@ import UIKit
 protocol AddTaskVCDelegate: AnyObject {
     func didCreateToDo(todo: ToDoItem)
     func didUpdateToDo(todo: ToDoItem)
-    func didDeleteToDo() // method for delete button
+    func didDeleteToDo()
 }
 
-class AddTaskViewController: UIViewController, UITextViewDelegate {
+class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     weak var delegate: AddTaskVCDelegate?
     
@@ -14,32 +14,40 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
-    
+    enum AlertString {
+        static let title: String = "Вы точно хотите удалить ?"
+        static let message: String =  "Выберите одно действие"
+        
+        static let titleBack: String = "Назад"
+        static let titleDelete: String = "Удалить"
+    }
     
     enum controllerType {
         case create
         case edit
         case none
     }
-    
     var type = controllerType.none
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        delegateStorage()
+    }
+    
+    fileprivate func delegateStorage() {
         textField.becomeFirstResponder()
         textField.delegate = self
         textView.delegate = self
     }
     
-    
     func configure(with todos: ToDoItem) {
         textField.text = todos.title
-        textView.text = todos.discription
+        textView.text = todos.description
     }
     
-    
-    @IBAction func myButton(_ sender: Any) {
-        let todoFromTappedButton = ToDoItem(title: textField.text!, discription: textView.text!)
+    @IBAction private func myButton(_ sender: UIButton) {
+        let todoFromTappedButton = ToDoItem(title: textField.text ?? "", description: textView.text)
         
         switch type {
         case .create:
@@ -49,27 +57,23 @@ class AddTaskViewController: UIViewController, UITextViewDelegate {
             delegate?.didUpdateToDo(todo: todoFromTappedButton)
             navigationController?.popViewController(animated: true)
         case .none:
-            print("Error")
+            break
         }
     }
     
-    @IBAction func deleteButtonAction(_ sender: UIButton) { // add delete button
-        let alert = UIAlertController(title: "Вы точно хотите удалить ?",
-                                      message: "выберите одно действие",
+    @IBAction private func deleteButtonAction(_ sender: UIButton) { // add delete button
+        let alert = UIAlertController(title: AlertString.title,
+                                      message: AlertString.message,
                                       preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: "Назад", style: .cancel))
-        alert.addAction(UIAlertAction(title: "Удалить", style: .destructive, handler: { (action) in
+        alert.addAction(UIAlertAction(title: AlertString.titleBack, style: .cancel))
+        alert.addAction(UIAlertAction(title: AlertString.titleDelete,
+                                      style: .destructive,
+                                      handler: { (action) in
             self.dismiss(animated: true)
             self.delegate?.didDeleteToDo()
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true)
     }
-}
-
-
-
-extension AddTaskViewController: UITextFieldDelegate {
-    
 }
