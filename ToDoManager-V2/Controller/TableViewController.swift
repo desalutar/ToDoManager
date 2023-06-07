@@ -63,7 +63,13 @@ class TableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
     
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        44.0
+    }
 }
 
 
