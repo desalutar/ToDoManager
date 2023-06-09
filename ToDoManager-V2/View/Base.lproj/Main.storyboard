@@ -3,6 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,16 +29,16 @@
                                             <rect key="frame" x="12" y="8" width="296" height="56"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5WG-NE-u83">
-                                                    <rect key="frame" x="0.0" y="7.5" width="258" height="41"/>
+                                                    <rect key="frame" x="0.0" y="7.5" width="254" height="41"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sit-JV-9N1">
-                                                            <rect key="frame" x="0.0" y="0.0" width="258" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="254" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u9E-0b-Kc8">
-                                                            <rect key="frame" x="0.0" y="20.5" width="258" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="254" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -45,13 +46,15 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XmZ-qb-oZ6">
-                                                    <rect key="frame" x="266" y="16" width="30" height="24"/>
+                                                    <rect key="frame" x="262" y="16" width="34" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="2Jn-uW-b9Q"/>
-                                                        <constraint firstAttribute="width" constant="30" id="UCI-RI-SEA"/>
+                                                        <constraint firstAttribute="width" constant="34" id="fsX-zA-04X"/>
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                    <state key="normal" title="Button" image="circle" catalog="system"/>
+                                                    <state key="normal" title="Button">
+                                                        <imageReference key="image" image="circle" catalog="system" symbolScale="default" variableValue="0.0"/>
+                                                    </state>
                                                     <connections>
                                                         <action selector="circleButton:" destination="XJw-Is-ZVm" eventType="touchUpInside" id="SVA-k8-htk"/>
                                                     </connections>
@@ -70,6 +73,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="circleButton" destination="XmZ-qb-oZ6" id="xbm-CQ-0G9"/>
                                     <outlet property="descriptionLabel" destination="u9E-0b-Kc8" id="Lmq-Ud-jbK"/>
                                     <outlet property="titleLabel" destination="Sit-JV-9N1" id="NTu-Qg-k5H"/>
                                 </connections>
@@ -131,7 +135,7 @@
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="396-Zl-Gep">
                                         <rect key="frame" x="0.0" y="40" width="288" height="147"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <color key="textColor" systemColor="systemFillColor"/>
+                                        <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -186,14 +190,14 @@
     </scenes>
     <resources>
         <image name="circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
