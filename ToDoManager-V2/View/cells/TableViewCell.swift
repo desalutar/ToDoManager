@@ -19,14 +19,15 @@ class TableViewCell: UITableViewCell {
         descriptionLabel.text = toDoItem.description
     }
     
-    @IBAction func switchAction(_ sender: UISwitch) {
-        if sender.isOn {
-            titleLabel.textColor = .systemGray4
-            descriptionLabel.textColor = .systemGray4
-        } else {
-            titleLabel.textColor = .label
-            descriptionLabel.textColor = .label
-        }
+    @IBAction func circleButton(_ sender: UIButton) {
+        let circle = UIImage(systemName: "circle")
+        let circleCheckMark = UIImage(systemName: "checkmark.circle.fill")
+        sender.setImage(circle?.withRenderingMode(.alwaysOriginal), for: .highlighted)
+        sender.setImage(circleCheckMark?.withRenderingMode(.automatic), for: .selected)
+        
+        sender.isSelected = !sender.isSelected
+        
+
     }
 
 }
