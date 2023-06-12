@@ -2,7 +2,8 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    private var todos = [ToDoItem]()  // array that we use as a datasource
+    private var arrExecuteToDo = [String]()
+    private var todos = [[ToDoItem]]()
     private var selectedIndex: Int?   // global var for the operation of the row index in the extension
     
     enum Constants {
@@ -28,15 +29,20 @@ class TableViewController: UITableViewController {
     
     // MARK: - Table view Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todos.count
+         todos[section].count
     }
     
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return todos.count
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIndentifier,
                                                        for: indexPath) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
-        _ = todos[indexPath.row] // pick up the current body by cell index
-        cell.configureCell(with: todos[indexPath.row]) // config a cell from a cell
+        _ = todos[indexPath.section]
+        let section = todos[indexPath.row] // pick up the current body by cell index
+        cell.configureCell(with: section[indexPath.row]) // config a cell from a cell
         return cell
     }
     
@@ -47,9 +53,10 @@ class TableViewController: UITableViewController {
             fatalError("Unable to Instantiate Quotes View Controller")
         }
         
-        let todo = todos[indexPath.row]
+        let todoSection = todos[indexPath.section]
+        
         _ = secondeVC.view
-        secondeVC.configure(with: todo)
+        secondeVC.configure(with: todoSection[indexPath.row])
         secondeVC.type = .edit
         secondeVC.delegate = self
         navigationController?.pushViewController(secondeVC, animated: true)
@@ -69,13 +76,14 @@ class TableViewController: UITableViewController {
 extension TableViewController: AddTaskVCDelegate {
     // here we get data from the second view
     func didCreateToDo(todo: ToDoItem) {
-        todos.append(todo) // add a new element to the array
+//        todos.append(todo) // add a new element to the array
+        todos.append([todo])
         tableView.reloadData() // reload the table
     }
     
     func didUpdateToDo(todo: ToDoItem) {
         guard let index = selectedIndex else { return }
-        todos[index] = todo
+        todos[index] = [todo]
         tableView.reloadData()
     }
     

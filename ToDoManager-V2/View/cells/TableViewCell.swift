@@ -28,11 +28,15 @@ class TableViewCell: UITableViewCell {
         let circleCheckMark = UIImage(systemName: "checkmark.circle.fill")
         button.setImage(circle?.withRenderingMode(.alwaysOriginal), for: .highlighted)
         button.setImage(circleCheckMark?.withRenderingMode(.automatic), for: .selected)
-        button.tintColor = .systemGray6
+        button.tintColor = .systemBlue
     }
     
-    @IBAction func circleButton(_ button: UIButton) {
+    @IBAction func circleButtonAction(_ button: UIButton) {
         button.isSelected = !button.isSelected // true or false for choise
+        let textColor = button.isSelected ? UIColor.systemGray4 : UIColor.label
+        titleLabel.textColor = textColor
+        descriptionLabel.textColor = textColor
+        
     }
 
 }
