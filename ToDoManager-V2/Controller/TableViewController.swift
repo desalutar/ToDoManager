@@ -29,20 +29,20 @@ class TableViewController: UITableViewController {
     
     // MARK: - Table view Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-         todos[section].count
+        todos[section].count
     }
     
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return todos.count
+        todos.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIndentifier,
                                                        for: indexPath) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
-        _ = todos[indexPath.section]
-        let section = todos[indexPath.row] // pick up the current body by cell index
-        cell.configureCell(with: section[indexPath.row]) // config a cell from a cell
+        _ = todos[indexPath.row] // pick up the current body by cell index
+        let todo = todos[indexPath.section]
+        cell.configureCell(with: todo[indexPath.row]) // config a cell from a cell
         return cell
     }
     
