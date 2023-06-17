@@ -2,15 +2,17 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    private var arrExecuteToDo = [String]()
     private var todos = [[ToDoItem]]()
     private var selectedIndex: Int?   // global var for the operation of the row index in the extension
+    private var sectionToDo: Int?
     
     enum Constants {
         static let addTaskIndentifier: String = "addTaskVc"
         static let cellIndentifier: String = "ToDoCell"
         static let mainStoryboard: String = "Main"
         static let secondVC: String = "secondVC"
+        static let firstTitleForSection = "Unfulfilled"
+        static let secondTitleForSection = "Сompleted"
     }
     
     override func viewDidLoad() {
@@ -38,14 +40,20 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellIndentifier,
-                                                       for: indexPath) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
-        _ = todos[indexPath.row] // pick up the current body by cell index
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: Constants.cellIndentifier,
+            for: indexPath
+        ) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
+        
         let todo = todos[indexPath.section]
-        cell.configureCell(with: todo[indexPath.row]) // config a cell from a cell
+        cell.configureCell(with: todo[indexPath.row], indexPath: indexPath) // config a cell from a cell
+        cell.delegate = self
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        Constants.firstTitleForSection
+    }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let secondeVC = UIStoryboard(name: Constants.mainStoryboard, bundle: .main).instantiateViewController(
@@ -62,11 +70,12 @@ class TableViewController: UITableViewController {
         navigationController?.pushViewController(secondeVC, animated: true)
         
         selectedIndex = indexPath.row
+        sectionToDo = indexPath.section
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { // swipe deleted todo
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            todos.remove(at: indexPath.row)
+            todos[indexPath.section].remove(at: indexPath.row)
             tableView.reloadData()
         }
     }
@@ -76,14 +85,19 @@ class TableViewController: UITableViewController {
 extension TableViewController: AddTaskVCDelegate {
     // here we get data from the second view
     func didCreateToDo(todo: ToDoItem) {
-//        todos.append(todo) // add a new element to the array
-        todos.append([todo])
+        if todos.isEmpty{
+            todos.append([todo]) // add a new element to the
+        } else {
+            todos[0].append(todo)
+        }
         tableView.reloadData() // reload the table
     }
     
     func didUpdateToDo(todo: ToDoItem) {
-        guard let index = selectedIndex else { return }
-        todos[index] = [todo]
+        guard let index = selectedIndex,
+              let section = sectionToDo else { return }
+        
+        todos[section][index] = todo
         tableView.reloadData()
     }
     
@@ -92,6 +106,11 @@ extension TableViewController: AddTaskVCDelegate {
         todos.remove(at: index)
         tableView.reloadData()
     }
-    
-    
+}
+
+extension TableViewController: TableViewCellDelegate { // extension for button in cell
+    func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath) {
+        todos[indexPath.section][indexPath.row].isCompleted.toggle()
+        tableView.reloadData()
+    }
 }
