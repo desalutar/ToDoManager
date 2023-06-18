@@ -3,7 +3,7 @@ import UIKit
 class TableViewController: UITableViewController {
     
     private var todos = [[ToDoItem]]()
-    private var selectedIndex: Int?   // global var for the operation of the row index in the extension
+    private var indexToDo: Int?   // global var for the operation of the row index in the extension
     private var sectionToDo: Int?
     
     enum Constants {
@@ -69,7 +69,7 @@ class TableViewController: UITableViewController {
         secondeVC.delegate = self
         navigationController?.pushViewController(secondeVC, animated: true)
         
-        selectedIndex = indexPath.row
+        indexToDo = indexPath.row
         sectionToDo = indexPath.section
     }
     
@@ -94,7 +94,7 @@ extension TableViewController: AddTaskVCDelegate {
     }
     
     func didUpdateToDo(todo: ToDoItem) { 
-        guard let index = selectedIndex,
+        guard let index = indexToDo,
               let section = sectionToDo else { return }
         
         todos[section][index] = todo
@@ -102,7 +102,7 @@ extension TableViewController: AddTaskVCDelegate {
     }
     
     func didDeleteToDo() { // add protocol method for delete todo
-        guard let index = selectedIndex else { return }
+        guard let index = indexToDo else { return }
         todos.remove(at: index)
         tableView.reloadData()
     }

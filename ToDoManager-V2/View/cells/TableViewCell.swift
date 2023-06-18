@@ -34,7 +34,7 @@ class TableViewCell: UITableViewCell {
         selectedIndexPath = indexPath
     }
     
-    fileprivate func setupLabels(_ toDoItem: ToDoItem) {
+    fileprivate func setupLabels(_ toDoItem: ToDoItem) { // here we change the color of the labels when you click on the button
         let textColor = toDoItem.isCompleted ? UIColor.systemGray4 : UIColor.label
         titleLabel.textColor = textColor
         descriptionLabel.textColor = textColor
