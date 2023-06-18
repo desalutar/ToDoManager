@@ -75,7 +75,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { // swipe deleted todo
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            todos[indexPath.section].remove(at: indexPath.row)
+            todos[indexPath.section].remove(at: indexPath.row) // find the desired section, then the desired cell and delete
             tableView.reloadData()
         }
     }
@@ -93,7 +93,7 @@ extension TableViewController: AddTaskVCDelegate {
         tableView.reloadData() // reload the table
     }
     
-    func didUpdateToDo(todo: ToDoItem) {
+    func didUpdateToDo(todo: ToDoItem) { 
         guard let index = selectedIndex,
               let section = sectionToDo else { return }
         
@@ -110,7 +110,7 @@ extension TableViewController: AddTaskVCDelegate {
 
 extension TableViewController: TableViewCellDelegate { // extension for button in cell
     func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath) {
-        todos[indexPath.section][indexPath.row].isCompleted.toggle()
+        todos[indexPath.section][indexPath.row].isCompleted.toggle() // through the section we find the desired cell with a button and switch
         tableView.reloadData()
     }
 }
