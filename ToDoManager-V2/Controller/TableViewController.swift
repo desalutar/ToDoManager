@@ -2,9 +2,14 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    private var todos = [[ToDoItem]]()
+    private var todos = [[ToDoItem]]() {
+        didSet { tableView.reloadData() }
+    }
+    
     private var indexToDo: Int?   // global var for the operation of the row index in the extension
     private var sectionToDo: Int?
+    private var isComp: Bool?
+    private var sectionTitle = [Constants.firstTitleForSection, Constants.secondTitleForSection]
     
     enum Constants {
         static let addTaskIndentifier: String = "addTaskVc"
@@ -17,6 +22,7 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,7 +58,10 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Constants.firstTitleForSection
+        if todos[section].isEmpty {
+            return nil
+        }
+        return sectionTitle[section]
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -76,7 +85,6 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) { // swipe deleted todo
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             todos[indexPath.section].remove(at: indexPath.row) // find the desired section, then the desired cell and delete
-            tableView.reloadData()
         }
     }
 }
@@ -85,32 +93,47 @@ class TableViewController: UITableViewController {
 extension TableViewController: AddTaskVCDelegate {
     // here we get data from the second view
     func didCreateToDo(todo: ToDoItem) {
-        if todos.isEmpty{
-            todos.append([todo]) // add a new element to the
+        if todos.isEmpty {
+            todos.append([todo])
         } else {
             todos[0].append(todo)
         }
-        tableView.reloadData() // reload the table
     }
     
     func didUpdateToDo(todo: ToDoItem) { 
         guard let index = indexToDo,
               let section = sectionToDo else { return }
-        
         todos[section][index] = todo
-        tableView.reloadData()
     }
     
     func didDeleteToDo() { // add protocol method for delete todo
         guard let index = indexToDo else { return }
         todos.remove(at: index)
-        tableView.reloadData()
     }
 }
 
 extension TableViewController: TableViewCellDelegate { // extension for button in cell
     func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath) {
         todos[indexPath.section][indexPath.row].isCompleted.toggle() // through the section we find the desired cell with a button and switch
-        tableView.reloadData()
-    }
+        isComp = todos[indexPath.section][indexPath.row].isCompleted
+        let selectedTodo = todos[indexPath.section][indexPath.row]
+        
+        if isComp == true {
+            if todos.count >= 1 {
+                todos.append([selectedTodo])
+                todos[0].remove(at: indexPath.row)
+            } else if todos.count >= 1 {
+                todos[1].append(contentsOf: [selectedTodo])
+                todos[0].remove(at: indexPath.row)
+            } else if todos[1].count == 1{
+                todos[1].append(contentsOf: [selectedTodo])
+                todos[0].remove(at: indexPath.row)
+            }
+        } else {
+            if todos[1].count >= 1 {
+                todos[0].append(contentsOf: [selectedTodo])
+                todos[1].remove(at: indexPath.row)
+            }
+        }
+        }
 }
