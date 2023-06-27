@@ -119,7 +119,7 @@ extension TableViewController: TableViewCellDelegate { // extension for button i
         let selectedTodo = todos[indexPath.section][indexPath.row]
         
         if isComp == true {
-            if todos.count >= 1 {
+            if todos.count == 1 {
                 todos.append([selectedTodo])
                 todos[0].remove(at: indexPath.row)
             } else if todos.count >= 1 {
