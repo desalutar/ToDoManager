@@ -22,7 +22,9 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView()
+        // removes the name of the upper section in its absence
+        tableView.tableHeaderView = UIView(frame: CGRect(x: -1, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -123,15 +125,15 @@ extension TableViewController: TableViewCellDelegate { // extension for button i
                 todos.append([selectedTodo])
                 todos[0].remove(at: indexPath.row)
             } else if todos.count >= 1 {
-                todos[1].append(contentsOf: [selectedTodo])
+                todos[1].append(selectedTodo)
                 todos[0].remove(at: indexPath.row)
             } else if todos[1].count == 1{
-                todos[1].append(contentsOf: [selectedTodo])
+                todos[1].append(selectedTodo)
                 todos[0].remove(at: indexPath.row)
             }
         } else {
             if todos[1].count >= 1 {
-                todos[0].append(contentsOf: [selectedTodo])
+                todos[0].append(selectedTodo)
                 todos[1].remove(at: indexPath.row)
             }
         }
