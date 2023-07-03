@@ -15,6 +15,8 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     @IBOutlet weak var textView: UITextView!
     
     enum AlertString {
+        static let placeholderForTextView: String = "Введите описание."
+        
         static let title: String = "Вы точно хотите удалить ?"
         static let message: String =  "Выберите одно действие"
         
@@ -33,6 +35,8 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         delegateStorage()
+        textView.text = AlertString.placeholderForTextView
+        textView.textColor = UIColor.lightGray
     }
     
     fileprivate func delegateStorage() {
@@ -75,5 +79,22 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true)
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let currentText: String = textView.text
+        let updatedText = (currentText as NSString).replacingOccurrences(of: text, with: text)
+        
+        if updatedText.isEmpty {
+            textView.text = AlertString.placeholderForTextView
+            textView.textColor = UIColor.lightGray
+            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
+        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
+            textView.textColor = UIColor.black
+            textView.text = text
+        } else {
+            return true
+        }
+        return false
     }
 }
