@@ -35,8 +35,6 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         delegateStorage()
-//        textView.text = AlertString.placeholderForTextView
-//        textView.textColor = .lightGray
         textViewDidBeginEditing(textView)
         textViewDidEndEditing(textView)
         
@@ -71,6 +69,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     @IBAction func closeModalButton(_ sender: UIButton) {
         dismiss(animated: true)
     }
+    
     @IBAction private func deleteButtonAction(_ sender: UIButton) { // add delete button
         let alert = UIAlertController(title: AlertString.title,
                                       message: AlertString.message,
