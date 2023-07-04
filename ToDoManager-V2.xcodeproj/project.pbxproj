@@ -94,8 +94,8 @@
 		2353E13D2A2249290001D5BE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				2353E1372A22314E0001D5BE /* TableViewController.swift */,
 				2353E13F2A224C590001D5BE /* AddTaskViewController.swift */,
+				2353E1372A22314E0001D5BE /* TableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

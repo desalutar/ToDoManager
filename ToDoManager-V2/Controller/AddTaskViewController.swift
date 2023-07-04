@@ -35,8 +35,11 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     override func viewDidLoad() {
         super.viewDidLoad()
         delegateStorage()
-        textView.text = AlertString.placeholderForTextView
-        textView.textColor = UIColor.lightGray
+//        textView.text = AlertString.placeholderForTextView
+//        textView.textColor = .lightGray
+        textViewDidBeginEditing(textView)
+        textViewDidEndEditing(textView)
+        
     }
     
     fileprivate func delegateStorage() {
@@ -65,6 +68,9 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         }
     }
     
+    @IBAction func closeModalButton(_ sender: UIButton) {
+        dismiss(animated: true)
+    }
     @IBAction private func deleteButtonAction(_ sender: UIButton) { // add delete button
         let alert = UIAlertController(title: AlertString.title,
                                       message: AlertString.message,
@@ -81,20 +87,17 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         present(alert, animated: true)
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let currentText: String = textView.text
-        let updatedText = (currentText as NSString).replacingOccurrences(of: text, with: text)
-        
-        if updatedText.isEmpty {
-            textView.text = AlertString.placeholderForTextView
-            textView.textColor = UIColor.lightGray
-            textView.selectedTextRange = textView.textRange(from: textView.beginningOfDocument, to: textView.beginningOfDocument)
-        } else if textView.textColor == UIColor.lightGray && !text.isEmpty {
-            textView.textColor = UIColor.black
-            textView.text = text
-        } else {
-            return true
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == .lightGray {
+            textView.text = ""
+            textView.textColor = .black
         }
-        return false
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text == "" {
+            textView.text = AlertString.placeholderForTextView
+            textView.textColor = .lightGray
+        }
     }
 }

@@ -10,6 +10,7 @@ class TableViewController: UITableViewController {
     private var sectionToDo: Int?
     private var isComp: Bool?
     private var sectionTitle = [Constants.firstTitleForSection, Constants.secondTitleForSection]
+    private var sele: Int?
     
     enum Constants {
         static let addTaskIndentifier: String = "addTaskVc"
