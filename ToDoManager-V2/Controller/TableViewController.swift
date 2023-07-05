@@ -1,9 +1,6 @@
 import UIKit
 
-// давай сделаем этот класс `final`
-// это такая небольшая оптимизация
-// Если не знаешь что такое `final class` то почитай в доках
-class TableViewController: UITableViewController {
+final class TableViewController: UITableViewController {
     
     private var todos = [[ToDoItem]]() {
         didSet { tableView.reloadData() }
@@ -12,35 +9,22 @@ class TableViewController: UITableViewController {
     private var indexToDo: Int?   // global var for the operation of the row index in the extension
     private var sectionToDo: Int?
     
-    // Давай мы не будет так называть переменные
-    // подумай как переименовать так, чтобы стороннему разрабу, который первый раз увидит твой код
-    // было сходу все понятно
-    // как пример `isCompletedTask` или просто `isCompleted`
-    // подумай, может у тебя есть название получше
-    private var isComp: Bool?
-    private var sectionTitle = [Constants.firstTitleForSection, Constants.secondTitleForSection]
+    private var buttonOnTheCell: Bool?
+    private var sectionTitle = [firstTitleForSection, secondTitleForSection]
     
-    // 💩 это что за `sele` ? Какое-то недоназвание
-    private var sele: Int?
+    static let firstTitleForSection = "Unfulfilled"
+    static let secondTitleForSection = "Сompleted"
     
     enum Constants {
         static let addTaskIndentifier: String = "addTaskVc"
         static let cellIndentifier: String = "ToDoCell"
         static let mainStoryboard: String = "Main"
         static let secondVC: String = "secondVC"
-        
-        // Так, строки по хорошему должны быть локализироваными.
-        // Почитай про Локализацию в iOS и надо будет тебе переделать
-        static let firstTitleForSection = "Unfulfilled"
-        static let secondTitleForSection = "Сompleted"
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // removes the name of the upper section in its absence
-        
-        // это что за дичь ? Это костыль! Я так и не понял что он решает
-        tableView.tableHeaderView = UIView(frame: CGRect(x: -1, y: 0, width: 0, height: CGFloat.leastNormalMagnitude))
         
     }
     
@@ -68,7 +52,7 @@ class TableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: Constants.cellIndentifier,
             for: indexPath
-        ) as? TableViewCell else { return UITableViewCell() }  // cast on your cell
+        ) as? ToDoCell else { return UITableViewCell() }  // cast on your cell
         
         let todo = todos[indexPath.section]
         cell.configureCell(with: todo[indexPath.row], indexPath: indexPath) // config a cell from a cell
@@ -131,20 +115,14 @@ extension TableViewController: AddTaskVCDelegate {
     }
 }
 
-// А тут без бутылки не разобраться...
-// Ну я понимаю + / - что тут происходит, но кто-то кто не видел этот код ни разу может 🧠 себе сломать
-// Для первой версии сойдет, но по хорошему надо подумать как это порефачить и сделать логику более понятной
-// Пока оставляй так
+
 extension TableViewController: TableViewCellDelegate { // extension for button in cell
-    func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath) {
+    func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath) {
         todos[indexPath.section][indexPath.row].isCompleted.toggle() // through the section we find the desired cell with a button and switch
-        isComp = todos[indexPath.section][indexPath.row].isCompleted
+        buttonOnTheCell = todos[indexPath.section][indexPath.row].isCompleted
         let selectedTodo = todos[indexPath.section][indexPath.row]
         
-        // тут можно обойтись и без явного == true
-        // поскольку `if` ожидает булеву, а `isComp` это булева, то достаточно будет
-        // `if isComp`
-        if isComp == true {
+        if buttonOnTheCell! {
             if todos.count == 1 {
                 todos.append([selectedTodo])
                 todos[0].remove(at: indexPath.row)
@@ -161,6 +139,5 @@ extension TableViewController: TableViewCellDelegate { // extension for button i
                 todos[1].remove(at: indexPath.row)
             }
         }
-        }
-    // ^ а тут кажется форматирование поехало
+    }
 }

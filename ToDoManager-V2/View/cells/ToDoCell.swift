@@ -1,13 +1,14 @@
 import UIKit
 
 protocol TableViewCellDelegate: AnyObject {
-    func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath)
+    func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath)
 }
 
-// Давай этот класс тоже сделаем `final` и давай еще мы его переименует, на более внятное название
-// А то `TableViewCell` как то слишкам абстрактно
-class TableViewCell: UITableViewCell {
+final class ToDoCell: UITableViewCell {
 
+    private let circleImage = "circle"
+    private let checkMarkCircle = "checkmark.circle.fill"
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var circleButton: UIButton!
@@ -19,7 +20,6 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
-        
     }
 
     
@@ -36,20 +36,15 @@ class TableViewCell: UITableViewCell {
         selectedIndexPath = indexPath
     }
     
-    // почему `fileprivate` ?
-    fileprivate func setupLabels(_ toDoItem: ToDoItem) { // here we change the color of the labels when you click on the button
+    func setupLabels(_ toDoItem: ToDoItem) { // here we change the color of the labels when you click on the button
         let textColor = toDoItem.isCompleted ? UIColor.systemGray4 : UIColor.label
         titleLabel.textColor = textColor
         descriptionLabel.textColor = textColor
     }
     
-    fileprivate func setupButton(_ todoItem: ToDoItem) { // button settings for choise
-        
-        // Использовать вот так строки не рекомендуется. Выведи их в константы,
-        // но в следующих итерациях я тебе покажу как сделать красиво, чтобы было примерно так:
-        // `let circle = UIImage(systemName: .circle)`
-        let circle = UIImage(systemName: "circle")
-        let circleCheckMark = UIImage(systemName: "checkmark.circle.fill")
+    func setupButton(_ todoItem: ToDoItem) { // button settings for choise
+        let circle = UIImage(systemName: circleImage)
+        let circleCheckMark = UIImage(systemName: checkMarkCircle)
         let buttonImage = todoItem.isCompleted ? circleCheckMark : circle
         circleButton.setImage(buttonImage, for: .normal)
         
