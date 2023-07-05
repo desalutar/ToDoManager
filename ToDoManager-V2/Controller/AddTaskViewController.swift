@@ -53,7 +53,7 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
         textView.text = todos.description
     }
     
-    @IBAction private func saveButton(_ sender: UIButton) {
+    @IBAction private func buttonSaveTodo(_ sender: UIButton) {
         let todoFromTappedButton = ToDoItem(title: textField.text ?? "", description: textView.text)
         
         switch type {

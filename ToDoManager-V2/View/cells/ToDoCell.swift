@@ -1,13 +1,13 @@
 import UIKit
 
 protocol TableViewCellDelegate: AnyObject {
-    func cell(_: CellSettings, didSelectedAt indexPath: IndexPath)
+    func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath)
 }
 
-final class CellSettings: UITableViewCell {
+final class ToDoCell: UITableViewCell {
 
-    let circleImage = "circle"
-    let checkMarkCircle = "checkmark.circle.fill"
+    private let circleImage = "circle"
+    private let checkMarkCircle = "checkmark.circle.fill"
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -20,7 +20,6 @@ final class CellSettings: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessoryType = .disclosureIndicator
-        
     }
 
     

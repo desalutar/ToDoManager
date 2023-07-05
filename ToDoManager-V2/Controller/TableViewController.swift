@@ -52,7 +52,7 @@ final class TableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: Constants.cellIndentifier,
             for: indexPath
-        ) as? CellSettings else { return UITableViewCell() }  // cast on your cell
+        ) as? ToDoCell else { return UITableViewCell() }  // cast on your cell
         
         let todo = todos[indexPath.section]
         cell.configureCell(with: todo[indexPath.row], indexPath: indexPath) // config a cell from a cell
@@ -117,12 +117,12 @@ extension TableViewController: AddTaskVCDelegate {
 
 
 extension TableViewController: TableViewCellDelegate { // extension for button in cell
-    func cell(_: CellSettings, didSelectedAt indexPath: IndexPath) {
+    func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath) {
         todos[indexPath.section][indexPath.row].isCompleted.toggle() // through the section we find the desired cell with a button and switch
         buttonOnTheCell = todos[indexPath.section][indexPath.row].isCompleted
         let selectedTodo = todos[indexPath.section][indexPath.row]
         
-        if buttonOnTheCell == true {
+        if buttonOnTheCell! {
             if todos.count == 1 {
                 todos.append([selectedTodo])
                 todos[0].remove(at: indexPath.row)

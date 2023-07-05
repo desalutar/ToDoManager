@@ -13,7 +13,7 @@
 		2353E12D2A2230FC0001D5BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2353E12C2A2230FC0001D5BE /* Assets.xcassets */; };
 		2353E1302A2230FC0001D5BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2353E12E2A2230FC0001D5BE /* LaunchScreen.storyboard */; };
 		2353E1382A22314E0001D5BE /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E1372A22314E0001D5BE /* TableViewController.swift */; };
-		2353E13A2A2238A70001D5BE /* CellSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E1392A2238A70001D5BE /* CellSettings.swift */; };
+		2353E13A2A2238A70001D5BE /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E1392A2238A70001D5BE /* ToDoCell.swift */; };
 		2353E1402A224C590001D5BE /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E13F2A224C590001D5BE /* AddTaskViewController.swift */; };
 		2353E1442A2258A20001D5BE /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E1432A2258A20001D5BE /* ToDoItem.swift */; };
 /* End PBXBuildFile section */
@@ -27,7 +27,7 @@
 		2353E12F2A2230FC0001D5BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2353E1312A2230FC0001D5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2353E1372A22314E0001D5BE /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
-		2353E1392A2238A70001D5BE /* CellSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellSettings.swift; sourceTree = "<group>"; };
+		2353E1392A2238A70001D5BE /* ToDoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
 		2353E13F2A224C590001D5BE /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		2353E1432A2258A20001D5BE /* ToDoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -103,7 +103,7 @@
 		2353E13E2A224AE10001D5BE /* cells */ = {
 			isa = PBXGroup;
 			children = (
-				2353E1392A2238A70001D5BE /* CellSettings.swift */,
+				2353E1392A2238A70001D5BE /* ToDoCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -180,7 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2353E1242A2230FC0001D5BE /* AppDelegate.swift in Sources */,
-				2353E13A2A2238A70001D5BE /* CellSettings.swift in Sources */,
+				2353E13A2A2238A70001D5BE /* ToDoCell.swift in Sources */,
 				2353E1442A2258A20001D5BE /* ToDoItem.swift in Sources */,
 				2353E1382A22314E0001D5BE /* TableViewController.swift in Sources */,
 				2353E1262A2230FC0001D5BE /* SceneDelegate.swift in Sources */,
