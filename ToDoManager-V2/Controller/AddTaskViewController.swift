@@ -6,6 +6,7 @@ protocol AddTaskVCDelegate: AnyObject {
     func didDeleteToDo()
 }
 
+// Давай этот класс тоже сделаем `final`
 class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     weak var delegate: AddTaskVCDelegate?
@@ -14,6 +15,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
+    // Это должно переехать в локализированные строки
     enum AlertString {
         static let placeholderForTextView: String = "Введите описание."
         
@@ -40,6 +42,8 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         
     }
     
+    // Почему `fileprivate` а не `private` ?
+    // Хотя я знаю почему, мне интересно ты знаешь ?
     fileprivate func delegateStorage() {
         textField.becomeFirstResponder()
         textField.delegate = self
@@ -51,6 +55,8 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         textView.text = todos.description
     }
     
+    // 💩 что за название action `myButton` ? Что мне этот метод должен сказать ?
+    // название метода должно описывать то, что он делает
     @IBAction private func myButton(_ sender: UIButton) {
         let todoFromTappedButton = ToDoItem(title: textField.text ?? "", description: textView.text)
         
@@ -87,6 +93,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        // тут завязываться на цвет лейбла, не очень хорошая идея. Пока оставь так, но в следующих итерациях мы подрефачим архитектуру и сделаем по красоте
         if textView.textColor == .lightGray {
             textView.text = ""
             textView.textColor = .black

@@ -4,6 +4,8 @@ protocol TableViewCellDelegate: AnyObject {
     func cell(_: TableViewCell, didSelectedAt indexPath: IndexPath)
 }
 
+// Давай этот класс тоже сделаем `final` и давай еще мы его переименует, на более внятное название
+// А то `TableViewCell` как то слишкам абстрактно
 class TableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -34,6 +36,7 @@ class TableViewCell: UITableViewCell {
         selectedIndexPath = indexPath
     }
     
+    // почему `fileprivate` ?
     fileprivate func setupLabels(_ toDoItem: ToDoItem) { // here we change the color of the labels when you click on the button
         let textColor = toDoItem.isCompleted ? UIColor.systemGray4 : UIColor.label
         titleLabel.textColor = textColor
@@ -41,6 +44,10 @@ class TableViewCell: UITableViewCell {
     }
     
     fileprivate func setupButton(_ todoItem: ToDoItem) { // button settings for choise
+        
+        // Использовать вот так строки не рекомендуется. Выведи их в константы,
+        // но в следующих итерациях я тебе покажу как сделать красиво, чтобы было примерно так:
+        // `let circle = UIImage(systemName: .circle)`
         let circle = UIImage(systemName: "circle")
         let circleCheckMark = UIImage(systemName: "checkmark.circle.fill")
         let buttonImage = todoItem.isCompleted ? circleCheckMark : circle
