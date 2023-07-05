@@ -6,8 +6,7 @@ protocol AddTaskVCDelegate: AnyObject {
     func didDeleteToDo()
 }
 
-// Давай этот класс тоже сделаем `final`
-class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
+final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate {
     
     weak var delegate: AddTaskVCDelegate?
     
@@ -15,16 +14,11 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
-    // Это должно переехать в локализированные строки
-    enum AlertString {
-        static let placeholderForTextView: String = "Введите описание."
-        
-        static let title: String = "Вы точно хотите удалить ?"
-        static let message: String =  "Выберите одно действие"
-        
-        static let titleBack: String = "Назад"
-        static let titleDelete: String = "Удалить"
-    }
+    static let placeholderForTextView: String = "Введите описание."
+    static let title: String = "Вы точно хотите удалить ?"
+    static let message: String =  "Выберите одно действие"
+    static let titleBack: String = "Назад"
+    static let titleDelete: String = "Удалить"
     
     enum controllerType {
         case create
@@ -39,11 +33,15 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         delegateStorage()
         textViewDidBeginEditing(textView)
         textViewDidEndEditing(textView)
-        
+        textViewSettings()
     }
     
-    // Почему `fileprivate` а не `private` ?
-    // Хотя я знаю почему, мне интересно ты знаешь ?
+    fileprivate func textViewSettings() {
+        textView.layer.borderWidth = 3
+        textView.layer.cornerRadius = 5
+        textView.layer.borderColor = UIColor.systemGray6.cgColor
+    }
+    
     fileprivate func delegateStorage() {
         textField.becomeFirstResponder()
         textField.delegate = self
@@ -55,9 +53,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
         textView.text = todos.description
     }
     
-    // 💩 что за название action `myButton` ? Что мне этот метод должен сказать ?
-    // название метода должно описывать то, что он делает
-    @IBAction private func myButton(_ sender: UIButton) {
+    @IBAction private func saveButton(_ sender: UIButton) {
         let todoFromTappedButton = ToDoItem(title: textField.text ?? "", description: textView.text)
         
         switch type {
@@ -74,15 +70,16 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     
     @IBAction func closeModalButton(_ sender: UIButton) {
         dismiss(animated: true)
+        sender.isHidden = true
     }
     
     @IBAction private func deleteButtonAction(_ sender: UIButton) { // add delete button
-        let alert = UIAlertController(title: AlertString.title,
-                                      message: AlertString.message,
+        let alert = UIAlertController(title: AddTaskViewController.title,
+                                      message: AddTaskViewController.message,
                                       preferredStyle: .actionSheet)
         
-        alert.addAction(UIAlertAction(title: AlertString.titleBack, style: .cancel))
-        alert.addAction(UIAlertAction(title: AlertString.titleDelete,
+        alert.addAction(UIAlertAction(title: AddTaskViewController.titleBack, style: .cancel))
+        alert.addAction(UIAlertAction(title: AddTaskViewController.titleDelete,
                                       style: .destructive,
                                       handler: { (action) in
             self.dismiss(animated: true)
@@ -93,8 +90,7 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        // тут завязываться на цвет лейбла, не очень хорошая идея. Пока оставь так, но в следующих итерациях мы подрефачим архитектуру и сделаем по красоте
-        if textView.textColor == .lightGray {
+        if textView.textColor == .systemGray4 {
             textView.text = ""
             textView.textColor = .black
         }
@@ -102,8 +98,8 @@ class AddTaskViewController: UIViewController, UITextViewDelegate, UITextFieldDe
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == "" {
-            textView.text = AlertString.placeholderForTextView
-            textView.textColor = .lightGray
+            textView.text = AddTaskViewController.placeholderForTextView
+            textView.textColor = .systemGray4
         }
     }
 }
