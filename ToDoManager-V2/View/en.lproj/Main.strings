@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; configuration.title = "Delete"; ObjectID = "4yZ-XP-KAu"; */
+"4yZ-XP-KAu.configuration.title" = "Delete";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4yZ-XP-KAu"; */
+"4yZ-XP-KAu.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Save"; ObjectID = "GcK-Hg-u7G"; */
+"GcK-Hg-u7G.configuration.title" = "Save";
+
+/* Class = "UITextField"; placeholder = "Enter a name"; ObjectID = "JvW-l3-7T4"; */
+"JvW-l3-7T4.placeholder" = "Enter a name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Sit-JV-9N1"; */
+"Sit-JV-9N1.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "u9E-0b-Kc8"; */
+"u9E-0b-Kc8.text" = "Label";

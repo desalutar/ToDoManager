@@ -14,11 +14,13 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var textView: UITextView!
     
-    static let placeholderForTextView: String = "Введите описание."
-    static let title: String = "Вы точно хотите удалить ?"
-    static let message: String =  "Выберите одно действие"
-    static let titleBack: String = "Назад"
-    static let titleDelete: String = "Удалить"
+    static let saveButton: String = "save_button".locolized
+    static let deleteButton: String = "delete_button".locolized
+    static let placeholderForTextView: String = "placeholder_for_the_task_header".locolized
+    static let title: String = "title_of_the_deletion_pop_up_window".locolized
+    static let message: String =  "description_of_the_pop_up_deletion_window".locolized
+    static let titleBack: String = "canceling_confirmation_of_deletion".locolized
+    static let titleDelete: String = "confirmation_of_deletion".locolized
     
     enum controllerType {
         case create
@@ -54,6 +56,7 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     }
     
     @IBAction private func buttonSaveTodo(_ sender: UIButton) {
+        sender.setTitle(AddTaskViewController.saveButton, for: .normal)
         let todoFromTappedButton = ToDoItem(title: textField.text ?? "", description: textView.text)
         
         switch type {
@@ -74,6 +77,7 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     }
     
     @IBAction private func deleteButtonAction(_ sender: UIButton) { // add delete button
+        sender.setTitle(AddTaskViewController.deleteButton, for: .normal)
         let alert = UIAlertController(title: AddTaskViewController.title,
                                       message: AddTaskViewController.message,
                                       preferredStyle: .actionSheet)
