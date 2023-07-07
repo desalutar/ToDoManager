@@ -9,7 +9,11 @@
 "GcK-Hg-u7G.configuration.title" = "Save";
 
 /* Class = "UITextField"; placeholder = "Enter a name"; ObjectID = "JvW-l3-7T4"; */
+<<<<<<< HEAD
 "JvW-l3-7T4.placeholder" = "Enter a name";
+=======
+"JvW-l3-7T4.placeholder" = "Enter a title";
+>>>>>>> main
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Sit-JV-9N1"; */
 "Sit-JV-9N1.text" = "Label";
