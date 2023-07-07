@@ -126,7 +126,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="zfA-dt-0is">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="187"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите название." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JvW-l3-7T4">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JvW-l3-7T4">
                                                 <rect key="frame" x="0.0" y="0.0" width="288" height="34"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -145,19 +145,19 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="HHp-Ph-JOK">
-                                        <rect key="frame" x="89.5" y="220" width="109.5" height="83"/>
+                                        <rect key="frame" x="107.5" y="220" width="73.5" height="83"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GcK-Hg-u7G">
-                                                <rect key="frame" x="0.0" y="0.0" width="109.5" height="34.5"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Сохранить"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="73.5" height="34.5"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Save"/>
                                                 <connections>
                                                     <action selector="buttonSaveTodo:" destination="kYg-O5-wv1" eventType="touchUpInside" id="HgL-07-6Q8"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4yZ-XP-KAu">
-                                                <rect key="frame" x="0.0" y="48.5" width="109.5" height="34.5"/>
+                                                <rect key="frame" x="0.0" y="48.5" width="73.5" height="34.5"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Удалить">
+                                                <buttonConfiguration key="configuration" style="plain" title="Delete">
                                                     <color key="baseForegroundColor" systemColor="systemRedColor"/>
                                                 </buttonConfiguration>
                                                 <connections>

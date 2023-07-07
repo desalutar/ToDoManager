@@ -12,8 +12,8 @@ final class TableViewController: UITableViewController {
     private var buttonOnTheCell: Bool?
     private var sectionTitle = [firstTitleForSection, secondTitleForSection]
     
-    static let firstTitleForSection = "Unfulfilled"
-    static let secondTitleForSection = "Сompleted"
+    static let firstTitleForSection = "title_of_the_first_task_section".locolized
+    static let secondTitleForSection = "title_of_the_second_task_section".locolized
     
     enum Constants {
         static let addTaskIndentifier: String = "addTaskVc"
@@ -70,7 +70,7 @@ final class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let secondeVC = UIStoryboard(name: Constants.mainStoryboard, bundle: .main).instantiateViewController(
             withIdentifier: Constants.secondVC) as? AddTaskViewController else {
-            fatalError("Unable to Instantiate Quotes View Controller")
+            fatalError("class_instance_creation_error_output".locolized)
         }
         
         let todoSection = todos[indexPath.section]

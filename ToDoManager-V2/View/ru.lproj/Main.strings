@@ -1,0 +1,18 @@
+
+/* Class = "UIButton"; configuration.title = "Удалить"; ObjectID = "4yZ-XP-KAu"; */
+"4yZ-XP-KAu.configuration.title" = "Удалить";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "4yZ-XP-KAu"; */
+"4yZ-XP-KAu.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Сохранить"; ObjectID = "GcK-Hg-u7G"; */
+"GcK-Hg-u7G.configuration.title" = "Сохранить";
+
+/* Class = "UITextField"; placeholder = "Введите название."; ObjectID = "JvW-l3-7T4"; */
+"JvW-l3-7T4.placeholder" = "Введите название.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Sit-JV-9N1"; */
+"Sit-JV-9N1.text" = "Название";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "u9E-0b-Kc8"; */
+"u9E-0b-Kc8.text" = "Описание";
