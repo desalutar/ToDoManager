@@ -9,7 +9,7 @@ final class TableViewController: UITableViewController {
     private var indexToDo: Int?   // global var for the operation of the row index in the extension
     private var sectionToDo: Int?
     
-    private var buttonOnTheCell: Bool?
+    private var bolleanButtonCell: Bool?
     private var sectionTitle = [firstTitleForSection, secondTitleForSection]
     
     static let firstTitleForSection = "title_of_the_first_task_section".locolized
@@ -24,8 +24,6 @@ final class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // removes the name of the upper section in its absence
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,10 +117,10 @@ extension TableViewController: AddTaskVCDelegate {
 extension TableViewController: TableViewCellDelegate { // extension for button in cell
     func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath) {
         todos[indexPath.section][indexPath.row].isCompleted.toggle() // through the section we find the desired cell with a button and switch
-        buttonOnTheCell = todos[indexPath.section][indexPath.row].isCompleted
+        bolleanButtonCell = todos[indexPath.section][indexPath.row].isCompleted
         let selectedTodo = todos[indexPath.section][indexPath.row]
         
-        if buttonOnTheCell! {
+        if bolleanButtonCell! {
             if todos.count == 1 {
                 todos.append([selectedTodo])
                 todos[0].remove(at: indexPath.row)

@@ -18,6 +18,7 @@
 		2353E1442A2258A20001D5BE /* ToDoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2353E1432A2258A20001D5BE /* ToDoItem.swift */; };
 		23D886482A5717A4000310AF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 23D8864A2A5717A4000310AF /* Localizable.strings */; };
 		23D8864D2A571C8F000310AF /* LocalizationOfStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D8864C2A571C8F000310AF /* LocalizationOfStrings.swift */; };
+		23D886BB2A5C2519000310AF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D886BA2A5C2519000310AF /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		23D8864B2A5717A9000310AF /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		23D8864C2A571C8F000310AF /* LocalizationOfStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationOfStrings.swift; sourceTree = "<group>"; };
 		23D8864F2A572F8D000310AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		23D886BA2A5C2519000310AF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 		2353E13D2A2249290001D5BE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				23D886BA2A5C2519000310AF /* ImagePicker.swift */,
 				2353E13F2A224C590001D5BE /* AddTaskViewController.swift */,
 				2353E1372A22314E0001D5BE /* TableViewController.swift */,
 			);
@@ -196,6 +199,7 @@
 				2353E13A2A2238A70001D5BE /* ToDoCell.swift in Sources */,
 				2353E1442A2258A20001D5BE /* ToDoItem.swift in Sources */,
 				2353E1382A22314E0001D5BE /* TableViewController.swift in Sources */,
+				23D886BB2A5C2519000310AF /* ImagePicker.swift in Sources */,
 				2353E1262A2230FC0001D5BE /* SceneDelegate.swift in Sources */,
 				2353E1402A224C590001D5BE /* AddTaskViewController.swift in Sources */,
 			);

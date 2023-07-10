@@ -4,6 +4,8 @@ protocol TableViewCellDelegate: AnyObject {
     func cell(_: ToDoCell, didSelectedAt indexPath: IndexPath)
 }
 
+
+
 final class ToDoCell: UITableViewCell {
 
     private let circleImage = "circle"
@@ -12,6 +14,7 @@ final class ToDoCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var circleButton: UIButton!
+    @IBOutlet weak var imageViewInCell: UIImageView!
     
     private var selectedIndexPath: IndexPath?
     
@@ -29,6 +32,7 @@ final class ToDoCell: UITableViewCell {
         descriptionLabel.adjustsFontSizeToFitWidth = true
         titleLabel.text = toDoItem.title
         descriptionLabel.text = toDoItem.description
+        imageViewInCell.image = toDoItem.picture
         
         setupButton(toDoItem)
         setupLabels(toDoItem)

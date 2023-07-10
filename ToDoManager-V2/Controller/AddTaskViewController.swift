@@ -22,6 +22,8 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     static let titleBack: String = "canceling_confirmation_of_deletion".locolized
     static let titleDelete: String = "confirmation_of_deletion".locolized
     
+    var selectedImage: UIImage?
+    
     enum controllerType {
         case create
         case edit
@@ -53,6 +55,7 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     func configure(with todos: ToDoItem) {
         textField.text = todos.title
         textView.text = todos.description
+        selectedImage = todos.picture
     }
     
     @IBAction private func buttonSaveTodo(_ sender: UIButton) {
@@ -104,6 +107,13 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
         if textView.text == "" {
             textView.text = AddTaskViewController.placeholderForTextView
             textView.textColor = .systemGray4
+        }
+    }
+    
+    @IBAction func addPhotoInToDo(_ sender: Any) {
+        let imagePicker = ImagePicker()
+        imagePicker.imageSelection(in: self) { image in
+            self.selectedImage = image
         }
     }
 }

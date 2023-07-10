@@ -8,8 +8,8 @@
 /* Class = "UIButton"; configuration.title = "Сохранить"; ObjectID = "GcK-Hg-u7G"; */
 "GcK-Hg-u7G.configuration.title" = "Сохранить";
 
-/* Class = "UITextField"; placeholder = "Введите название."; ObjectID = "JvW-l3-7T4"; */
-"JvW-l3-7T4.placeholder" = "Введите название.";
+/* Class = "UITextField"; placeholder = "Введите описание."; ObjectID = "JvW-l3-7T4"; */
+"JvW-l3-7T4.placeholder" = "Введите описание.";
 
 /* Class = "UILabel"; text = "Label"; ObjectID = "Sit-JV-9N1"; */
 "Sit-JV-9N1.text" = "Название";
