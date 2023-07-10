@@ -112,7 +112,7 @@ final class AddTaskViewController: UIViewController, UITextViewDelegate, UITextF
     
     @IBAction func addPhotoInToDo(_ sender: Any) {
         let imagePicker = ImagePicker()
-        imagePicker.imageSelection(in: self) { image in
+        imagePicker.showImagePicker(in: self) { image in
             self.selectedImage = image
         }
     }

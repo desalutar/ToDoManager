@@ -5,22 +5,12 @@ class ImagePicker: NSObject, UIImagePickerControllerDelegate, UINavigationContro
     var imagePicker: UIImagePickerController?
     var completion: ((UIImage) -> ())?
     
-    func imageSelection(in viewController: UIViewController, completion: ((UIImage) -> ())?) {
+    func showImagePicker(in viewController: UIViewController, completion: ((UIImage) -> ())?) {
         self.completion = completion
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
         
         viewController.present(imagePicker!, animated: true)
-    }
-    
-    func showImagePicker(selectedSource: UIImagePickerController.SourceType){
-        guard UIImagePickerController.isSourceTypeAvailable(selectedSource) else { return }
-        
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = selectedSource
-        imagePickerController.delegate = self
-        imagePickerController.allowsEditing = false
-        
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
